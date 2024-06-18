@@ -13,10 +13,12 @@ Modules needed to be installed(BackEnd):
 
 
 Use the command for installing module in the fronend folder
-  npm i react-router-dom
+<br />
+ : npm i react-router-dom
 
   For Tailwind css Follow the documentation:
   https://tailwindcss.com/docs/guides/vite
 
 USe the command for installing modules in the backend Folder
-  npm i express mongoose multer cors fs
+<br />
+ : npm i express mongoose multer cors fs
