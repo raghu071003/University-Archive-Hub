@@ -1,0 +1,59 @@
+
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+
+body{
+  margin: 0;
+  z-index: 0;
+  overflow: hidden;
+  
+}
+::placeholder{
+  color: black;
+}
+
+.bgu{
+  background: url('https://static.vecteezy.com/system/resources/previews/001/311/554/original/education-and-back-to-school-concept-free-vector.jpg');
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+.opt{
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  height: 100vh;
+  width: 100vw;
+}
+
+.transitionho{
+  transition: all 0.5s ease;
+
+}
+
+.transitionho:hover{
+  transform: scale(1.1);
+}
+
+.hupload{
+  height: 700px;
+  overflow: scroll;
+}
+
+.hupload {
+
+  /* Hide scrollbars */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.scrollable-div::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
