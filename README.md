@@ -1,10 +1,12 @@
 # University-Archive-Hub
 
-Modules needed to be installed(FrontEnd):
+<b>Modules needed to be installed(FrontEnd):</b>
+<br />
 1.Tailwind css
 2.react-router-dom
 
-Modules needed to be installed(BackEnd):
+<b>Modules needed to be installed(BackEnd):</b>
+<br/>
 1. Express
 2. mongoose
 3. multer
