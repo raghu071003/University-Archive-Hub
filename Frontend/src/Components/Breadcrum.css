@@ -1,0 +1,12 @@
+.breadcrum{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    height: 50px;
+    width: fit-content;
+    backdrop-filter: blur(10px);
+}
