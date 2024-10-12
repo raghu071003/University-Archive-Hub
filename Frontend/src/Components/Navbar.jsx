@@ -1,68 +1,114 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useContext } from 'react';
+import React, { useState, useContext } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import MyContext from './Context';
-import { useLocation } from 'react-router-dom';
 import Logout from './Logout';
+
 function Navbar() {
-    const { isLoggedIn, username } = useContext(MyContext)
-    const location = useLocation();
-    const currentLocation = location.pathname
-    return (
-        <div className="">
-            <div className="bg-transparent border-b-2 z-40 flex flex-col lg:flex-row justify-between">
-                <ul className='flex flex-col lg:flex-row mt-4 lg:mt-0 lg:space-x-8 justify-center text-xl lg:text-2xl p-4 font-semibold'>
-                    <li>
-                        <NavLink exact to="/" className={({ isActive }) =>
+  const { isLoggedIn, username } = useContext(MyContext);
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-                            `${isActive ? 'text-black' : 'text-white'}
-block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#e3e3e3] lg:p-0`}>
-                            Home
-                        </NavLink>
-                    </li>
-                    {!isLoggedIn && (
-                        <>
-                            <li>
-                                <NavLink to="/login" className={({ isActive }) =>
+  const navLinkClass = ({ isActive }) =>
+    `block py-2 px-4 rounded-lg transition duration-200 ${
+      isActive ? 'bg-white text-blue-600' : 'text-white'
+    } hover:bg-blue-700`;
 
-                                    `${isActive ? 'text-black' : 'text-white'}
-block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#e3e3e3] lg:p-0`}>
-                                    Login
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/signup" className={({ isActive }) =>
-
-                                    `${isActive ? 'text-black' : 'text-white'}
-block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#e3e3e3] lg:p-0`}>
-                                    Register
-                                </NavLink>
-                            </li>
-                        </>
-                    )}
+  return (
+    <nav className='bg-blue-600 text-white shadow-md w-full z-50'>
+      <div className='container mx-auto px-4'>
+        <div className='flex justify-between items-center h-16'>
+          <div className='flex-shrink-0 text-2xl font-bold'>MyApp</div>
+          <div className='hidden lg:flex lg:items-center lg:w-auto'>
+            <ul className='flex space-x-4'>
+              <li>
+                <NavLink end to='/' className={navLinkClass}>
+                  Home
+                </NavLink>
+              </li>
+              {!isLoggedIn && (
+                <>
+                  <li>
+                    <NavLink to='/login' className={navLinkClass}>
+                      Login
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/signup' className={navLinkClass}>
+                      Register
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              {isLoggedIn && (
+                <ul className='flex items-center justify-center gap-2'>
+                  <li >
+                    <span className='text-gray-200 '>Logged in as {username}</span>
+                  </li>
+                  <li>
+                    <Logout />
+                  </li>
                 </ul>
-                <ul className='flex flex-col lg:flex-row mt-4 lg:mt-0 lg:space-x-8 justify-center text-xl lg:text-2xl p-4 font-semibold'>
-                    {isLoggedIn && currentLocation === '/folders' && (
-                        <>
-                            <li className={
-
-                            `
-             block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#e3e3e3] lg:p-0`}>
-                                Logged in as {username}
-                            </li>
-                            <li className={({ isActive }) =>
-
-                            `${isActive ? 'text-black' : 'text-white'}
-             block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#e3e3e3] lg:p-0`}>
-                                <Logout />
-                            </li>
-                        </>
-                    )}
-                </ul>
-            </div>
+              )}
+            </ul>
+          </div>
+          <button
+            className='lg:hidden text-white'
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className='w-6 h-6'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M4 6h16M4 12h16m-7 6h7'
+              ></path>
+            </svg>
+          </button>
         </div>
-
-    );
+        {/* Mobile menu */}
+        <div className={`${menuOpen ? 'block' : 'hidden'} lg:hidden`}>
+          <ul className='pt-2 pb-4 space-y-2'>
+            <li>
+              <NavLink end to='/' className={navLinkClass} onClick={() => setMenuOpen(false)}>
+                Home
+              </NavLink>
+            </li>
+            {!isLoggedIn && (
+              <>
+                <li>
+                  <NavLink to='/login' className={navLinkClass} onClick={() => setMenuOpen(false)}>
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to='/signup' className={navLinkClass} onClick={() => setMenuOpen(false)}>
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {isLoggedIn && (
+              <ul className='flex items-center justify-center'>
+                <li className='text-gray-200'>
+                  Logged in as {username}
+                </li>
+                <li>
+                  <Logout />
+                </li>
+              </ul>
+            )}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;

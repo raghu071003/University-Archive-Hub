@@ -5,7 +5,7 @@ function Logout() {
     const handleLogout = async () => {
         try {
             const token = localStorage.getItem('token');
-            console.log(token);
+            // console.log(token);
             if (!token) {
                 console.error('No token found');
                 return;
@@ -24,7 +24,7 @@ function Logout() {
     };
 
     return (
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleLogout} className='hover:bg-white p-2 rounded-xl hover:text-black'>Logout</button>
     );
 }
 export default Logout

@@ -1,4 +1,4 @@
-.breadcrum{
+.breadcrum {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -8,5 +8,31 @@
     text-transform: capitalize;
     height: 50px;
     width: fit-content;
+    padding: 0 12px;
+    border-radius: 8px;
     backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.breadcrum p {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.breadcrum p:hover {
+    color: #1e90ff; /* Change color to blue on hover */
+}
+
+.breadcrum img {
+    filter: invert(1); /* Invert the color of the arrow icon for dark backgrounds */
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    .breadcrum {
+        font-size: 14px;
+        gap: 6px;
+        padding: 0 8px;
+    }
 }

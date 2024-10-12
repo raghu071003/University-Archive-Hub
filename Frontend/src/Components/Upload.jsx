@@ -36,31 +36,46 @@ function Upload({path}) {
 
   return (
    
-    <div className='absolute bottom-0 right-0'>
-       {admin  && <div className='flex justify-center items-center'>
-    <form action="" className='p-5 flex justify-center items-center' onSubmit={submitFile}>
-      <div className='flex flex-col items-center'>
-        <div className="file-upload m-4 p-2 border-2 border-dashed rounded-lg bg-gray-100 hover:bg-gray-200 transition duration-300">
-          <label htmlFor='imgupload' className="cursor-pointer">
-            <div className="image-upload-wrap">
-              <input id='imgupload' type='file' required onChange={(e) => setters(e)} accept='application/pdf' className="hidden" />
-              <div className="text-center">
-                <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                </svg>
-                <p className="text-sm text-gray-600">Drag and drop files here or click to browse</p>
-              </div>
+    <div className='flex justify-center items-center p-4'>
+  {admin && (
+    <div className='w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden'>
+      <form onSubmit={submitFile} className='p-6 space-y-4'>
+        <h2 className='text-xl font-semibold text-center'>Upload a File</h2>
+        <div className='border-2 border-dashed rounded-lg bg-gray-50 p-4 hover:bg-gray-100 transition duration-300'>
+          <label htmlFor='imgupload' className='block cursor-pointer'>
+            <input
+              id='imgupload'
+              type='file'
+              required
+              onChange={setters}
+              accept='application/pdf'
+              className='hidden'
+            />
+            <div className='text-center'>
+              <svg
+                className='w-12 h-12 mx-auto mb-2 text-gray-500'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 6v6m0 0v6m0-6h6m-6 0H6'></path>
+              </svg>
+              <p className='text-sm text-gray-600'>Click or drag files to upload</p>
             </div>
           </label>
         </div>
-        <button type='submit' className='border-2 border-black rounded-lg font-bold px-6 py-3 mt-4 text-white bg-black hover:bg-gray-800 transition duration-300'>
-          Upload Here
+        <button
+          type='submit'
+          className='w-full bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition duration-300'
+        >
+          Upload
         </button>
-      </div>
-    </form>
-  </div> }
-  
+      </form>
+    </div>
+  )}
 </div>
+
 
   )
 }
